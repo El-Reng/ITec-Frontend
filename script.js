@@ -34,14 +34,20 @@ home_button.addEventListener('click', () => {
     clear_containers()
 })
 
+home_button.addEventListener("click", () => {
+    search_randoms_albums();
+});
+
 async function search_albums(query) {
     albums_container.innerHTML = '<p class="text-gray-500 text-center w-full">Cargando...</p>'
     try{
         const url = `${SEARCH_URL}?q=${query}&type=release&per_page=20&token=${TOKEN}`
         const res = await fetch(url)
         clear_containers()
+
         if (!res.ok) throw new Error('Error en la búsqueda')
         const data = await res.json()
+    
         render_albums(data.results)
         console.log("Resultados búsqueda:", data.results)
     } catch (err) {
@@ -79,6 +85,23 @@ async function load_album_details(id, detailsDiv) {
         console.log("Detalle álbum:", data)
     } catch (err) {
         detailsDiv.innerHTML = `<p class="text-red-600">${err.message}</p>`
+    }
+}
+
+async function search_randoms_albums() {
+    albums_container.innerHTML = '<p class="text-slate-500 text-center w-full">Cargando álbumes...</p>'
+    try {
+        const random_page = Math.floor(Math.random() * 100) + 1
+        const url = `${SEARCH_URL}?&type=master&page=${random_page}&per_page=20&token=${TOKEN}`
+        const res = await fetch(url)
+        clear_containers()
+
+        if (!res.ok) throw new Error('Error al cargar álbumes')
+        const data = await res.json()
+
+        render_albums(data.results)
+    } catch (err) {
+        albums_container.innerHTML = `<p class="text-red-600 text-center">${err.message}</p>`
     }
 }
 
