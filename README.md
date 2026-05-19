@@ -39,3 +39,29 @@ Condiciones
   Un solo index.html
   Todo el render ocurre dentro de un contenedor principal
   Separar funciones de render (lista, tarjeta, detalle)
+
+Fase 3 FINAL: Estado, interacción y estilos
+ENTREGA:  13/05/2026
+
+Objetivo
+  Gestionar el estado de la aplicación, interacción del usuario y presentación visual.
+
+Requisitos
+  Implementar una función central de renderizado
+
+  Implementar eventos:
+    búsqueda
+    selección de álbum
+    agregar/quitar favoritos
+    navegación entre vistas de la SPA
+
+  Cada interacción debe:
+    actualizar el localStorage
+    re-renderizar la interfaz
+
+  Aplicar estilos utilizando Tailwind:
+    estructura visual a decisión propia
+    estados (hover, activo, carga)
+
+Condiciones extra
+  Entregar por GitHub

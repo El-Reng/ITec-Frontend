@@ -10,6 +10,9 @@ const BASE_URL = 'https://api.discogs.com'
 const SEARCH_URL = `${BASE_URL}/database/search`
 const RELEASE_URL = `${BASE_URL}/releases`
 
+let last_rendered_albums = []
+const default_albums_container_class = albums_container.className
+
 search_button.addEventListener('click', () => {
     clear_containers()
     const query = input.value.trim()
@@ -88,6 +91,141 @@ async function load_album_details(id, detailsDiv) {
     }
 }
 
+async function show_album_page(id) {
+    clear_containers()
+
+    albums_container.className = 'w-full'
+    albums_container.innerHTML = `
+        <p class="text-gray-500 text-center">
+            Cargando álbum...
+        </p>
+    `
+
+    try {
+        const url = `${RELEASE_URL}/${id}?token=${TOKEN}`
+        const res = await fetch(url)
+
+        if (!res.ok) {
+            throw new Error('Error al cargar el álbum')
+        }
+
+        const data = await res.json()
+
+        albums_container.innerHTML = `
+            <article class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-6xl mx-auto">
+
+                <button id="backButton"
+                    class="mb-8 px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 transition">
+                    🢀 Volver
+                </button>
+
+                <section class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+
+                    <div>
+                        <img 
+                            src="${data.images?.[0]?.uri || ''}" 
+                            alt="${data.title}"
+                            class="w-full max-w-md rounded-xl shadow-lg"
+                        >
+                    </div>
+
+                    <div class="flex flex-col justify-start">
+
+                        <h1 class="text-4xl font-bold leading-tight mb-8">${data.title}</h1>
+
+                        <div class="space-y-5 text-lg">
+                            <div>
+                                <p class="font-bold text-gray-800">Artista</p>
+                                <p class="text-gray-600">${data.artists_sort || 'Desconocido'}</p>
+                            </div>
+
+                            <div>
+                                <p class="font-bold text-gray-800">Género</p>
+                                <p class="text-gray-600">${data.genres?.join(', ') || 'Desconocido'}</p>
+                            </div>
+
+                            <div>
+                                <p class="font-bold text-gray-800">Estilo</p>
+                                <p class="text-gray-600">${data.styles?.join(', ') || 'Desconocido'}</p>
+                            </div>
+
+                            <div>
+                                <p class="font-bold text-gray-800">Año</p>
+                                <p class="text-gray-600">${data.year || 'Desconocido'}</p>
+                            </div>
+
+                            <div>
+                                <p class="font-bold text-gray-800">Valoración</p>
+                                <p class="text-gray-600">${data.community.rating.average || 'Sin datos'}/5</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+
+                <section class="mt-14">
+
+                    <h2 class="text-2xl font-bold mb-6 border-b pb-3">
+                        Tracklist
+                    </h2>
+
+                    <ul class="space-y-3">
+
+                        ${data.tracklist.map((song, index) => `
+                            <li class="
+                                flex justify-between items-center
+                                bg-gray-100
+                                hover:bg-gray-200
+                                transition
+                                px-5 py-4 rounded-xl
+                            ">
+
+                                <div class="flex items-center gap-4">
+
+                                    <span class="
+                                        font-bold
+                                        text-gray-500
+                                        min-w-[35px]
+                                    ">
+                                        ${index + 1}.
+                                    </span>
+
+                                    <span class="text-lg">
+                                        ${song.title}
+                                    </span>
+
+                                </div>
+
+                                <span class="text-gray-500">
+                                    ${song.duration || '--:--'}
+                                </span>
+
+                            </li>
+                        `).join('')}
+
+                    </ul>
+
+                </section>
+
+            </article>
+        `
+
+        document
+            .getElementById('backButton')
+            .addEventListener('click', () => {
+                clear_containers()
+                render_albums(last_rendered_albums)
+            })
+
+    } catch (err) {
+        albums_container.innerHTML = `
+            <p class="text-red-600 text-center">
+                ${err.message}
+            </p>
+        `
+    }
+}
+
 async function search_randoms_albums() {
     albums_container.innerHTML = '<p class="text-slate-500 text-center w-full">Cargando álbumes...</p>'
     try {
@@ -106,6 +244,8 @@ async function search_randoms_albums() {
 }
 
 function render_albums(albums) {
+    last_rendered_albums = albums
+    albums_container.className = default_albums_container_class
 
     if (!albums.length) {
         albums_container.innerHTML = '<p class="text-gray-500 text-center w-full">No se encontraron álbumes.</p>'
@@ -127,13 +267,9 @@ function render_albums(albums) {
 
             <h3 class="font-bold text-gray-800 mb-2">${title}</h3>
 
-            <button class="toggle-details text-sm text-blue-500" data-id="${id}">
+            <button class="view-album text-sm text-blue-500" data-id="${id}">
                 Ver más
             </button>
-
-            <div class="details hidden mt-2 text-sm text-gray-600" id="details-${id}">
-                <p>Cargando info...</p>
-            </div>
         `
 
         albums_container.appendChild(card)
@@ -206,25 +342,12 @@ function get_all_favs() {
 }
 
 function add_events_details() {
-    const buttons = document.querySelectorAll('.toggle-details')
+    const buttons = document.querySelectorAll('.view-album')
 
     buttons.forEach(btn => {
-        btn.addEventListener('click', async () => {
+        btn.addEventListener('click', () => {
             const id = btn.dataset.id
-            const detailsDiv = document.getElementById(`details-${id}`)
-
-            const isHidden = detailsDiv.classList.contains('hidden')
-
-            if (isHidden) {
-                detailsDiv.classList.remove('hidden')
-                btn.textContent = 'Ocultar'
-
-                await load_album_details(id, detailsDiv)
-
-            } else {
-                detailsDiv.classList.add('hidden')
-                btn.textContent = 'Ver más'
-            }
+            show_album_page(id)
         })
     })
 }
