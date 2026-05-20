@@ -58,39 +58,6 @@ async function search_albums(query) {
     }
 }
 
-async function load_album_details(id, detailsDiv) {
-    try {
-        const url = `${RELEASE_URL}/${id}?token=${TOKEN}`
-        const res = await fetch(url)
-
-        if (!res.ok) throw new Error('Error al cargar detalles')
-        
-        const data = await res.json()
-        detailsDiv.innerHTML = `
-        <section class="text-left">
-            <p><strong>Artista:</strong> ${data.artists_sort || 'Desconocido'}</p>
-            <p><strong>Género:</strong> ${data.genres ? data.genres.join(', ') : 'Desconocido'}</p>
-            <p><strong>Estilo:</strong> ${data.styles ? data.styles.join(', ') : 'Desconocido'}</p>
-            <p><strong>Año:</strong> ${data.year || 'Desconocido'}</p>
-        </section>
-        <br>
-        <p><strong>Valoración:</strong></p>
-        <p>${data.community.rating.average}/5</p>
-        <br>
-        <p><strong>Tracklist:</strong></p>
-        `
-        for (let i = 0; i < data.tracklist.length; i++) {
-            const song = data.tracklist[i];
-            detailsDiv.innerHTML += `
-                <li class="list-none text-left"><strong class="pr-2">${i+1}:</strong>${song.title}</li>
-                `
-        }
-        console.log("Detalle álbum:", data)
-    } catch (err) {
-        detailsDiv.innerHTML = `<p class="text-red-600">${err.message}</p>`
-    }
-}
-
 async function show_album_page(id) {
     clear_containers()
 
@@ -110,6 +77,7 @@ async function show_album_page(id) {
         }
 
         const data = await res.json()
+        console.log("Detalle álbum:", data)
 
         albums_container.innerHTML = `
             <article class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-6xl mx-auto">
