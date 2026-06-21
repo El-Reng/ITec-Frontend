@@ -1,16 +1,16 @@
-Tarea Variables - Simulador de acceso a sistema
+Tarea Bucles 
 
-Crear un programa en JavaScript que simule el acceso a un sistema.
+Objetivo:
+Hacer un programa en JavaScript que trabaje con un array de usuarios como este:
 
-Al iniciar, el programa deben declarar (o solicitar al usuario con prompt) las siguientes variables:
-Nombre
-Edad
-Contraseña (pueden inventar una lógica simple, por ejemplo que tenga cierto largo mínimo)
-Con esa información, el sistema debe validar lo siguiente usando if:
-Si el nombre está vacío -> mostrar console.log de error
-Si la edad es menor a 18 -> mostrar console.log de acceso denegado
-Si la contraseña tiene menos de 6 caracteres -> mostrar console.log de contraseña inválida
-Si todo es correcto, mostrar un mensaje de bienvenida en consola con los datos del usuario.
- Luego del acceso, el programa debe:
-Calcular y mostrar cuántos años tendrá en 10 años, (modificando la variable original)
-Mostrar una frase completa con todos sus datos más la edad nueva.
+const usuarios = [
+{"id":1,"first_name":"Harmony","last_name":"Twohig","email":"htwohig0@businesswire.com","gender":"Female","ip_address":"188.185.115.201"}
+];
+
+Lo van a tener que generar con mockaroo, con 50 registros es suficiente, el formato de descarga debe ser JSON, el resto de valores dejenlos por defecto.
+
+En base a los datos descargados:
+
+1) Agregar un buscador con prompt, donde se ingrese el ID del usuario, el sistema debe mostrar por consola todos los datos del usuario seleccionado, en caso de no existir debe mostrar una alerta de usuario no encontrado.
+
+2) Reducir a un nuevo array los datos de los géneros de los usuarios y contar cuantos usuarios hay de cada género.
