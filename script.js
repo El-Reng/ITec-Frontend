@@ -1,75 +1,140 @@
-const usuarios = [{"id":1,"first_name":"Ellis","last_name":"Took","email":"etook0@lulu.com","gender":"Male","ip_address":"223.227.26.140"},
-{"id":2,"first_name":"Ketty","last_name":"Leivesley","email":"kleivesley1@reverbnation.com","gender":"Female","ip_address":"102.33.145.88"},
-{"id":3,"first_name":"Elsinore","last_name":"Franceschi","email":"efranceschi2@trellian.com","gender":"Female","ip_address":"210.153.109.5"},
-{"id":4,"first_name":"Berkie","last_name":"Benbrick","email":"bbenbrick3@weibo.com","gender":"Male","ip_address":"213.88.114.194"},
-{"id":5,"first_name":"Rozina","last_name":"Kachel","email":"rkachel4@dailymail.co.uk","gender":"Female","ip_address":"153.10.43.232"},
-{"id":6,"first_name":"Vittoria","last_name":"Dy","email":"vdy5@tinypic.com","gender":"Female","ip_address":"9.176.197.227"},
-{"id":7,"first_name":"Flem","last_name":"Harry","email":"fharry6@mozilla.com","gender":"Male","ip_address":"35.37.201.135"},
-{"id":8,"first_name":"Dulsea","last_name":"Bridgett","email":"dbridgett7@google.com.au","gender":"Female","ip_address":"62.191.73.149"},
-{"id":9,"first_name":"Chiarra","last_name":"McCrae","email":"cmccrae8@rakuten.co.jp","gender":"Female","ip_address":"61.112.191.240"},
-{"id":10,"first_name":"Gwenore","last_name":"Tuffs","email":"gtuffs9@homestead.com","gender":"Bigender","ip_address":"252.176.36.204"},
-{"id":11,"first_name":"Corina","last_name":"Wharlton","email":"cwharltona@shop-pro.jp","gender":"Female","ip_address":"175.233.173.219"},
-{"id":12,"first_name":"Thekla","last_name":"Radish","email":"tradishb@geocities.com","gender":"Female","ip_address":"94.201.95.236"},
-{"id":13,"first_name":"Josee","last_name":"Beardsley","email":"jbeardsleyc@hatena.ne.jp","gender":"Female","ip_address":"94.208.22.220"},
-{"id":14,"first_name":"Anatollo","last_name":"Thornborrow","email":"athornborrowd@dyndns.org","gender":"Male","ip_address":"247.22.36.23"},
-{"id":15,"first_name":"Selig","last_name":"Tabor","email":"stabore@discovery.com","gender":"Male","ip_address":"143.137.65.138"},
-{"id":16,"first_name":"Lynde","last_name":"De Bruin","email":"ldebruinf@furl.net","gender":"Female","ip_address":"41.44.50.227"},
-{"id":17,"first_name":"Edik","last_name":"Gautrey","email":"egautreyg@bbc.co.uk","gender":"Male","ip_address":"228.157.155.112"},
-{"id":18,"first_name":"Cordelie","last_name":"Jeffreys","email":"cjeffreysh@cisco.com","gender":"Female","ip_address":"28.110.31.93"},
-{"id":19,"first_name":"Sheryl","last_name":"Walrond","email":"swalrondi@bloomberg.com","gender":"Female","ip_address":"210.209.29.74"},
-{"id":20,"first_name":"Thain","last_name":"De Mitri","email":"tdemitrij@fastcompany.com","gender":"Male","ip_address":"70.240.235.84"},
-{"id":21,"first_name":"Philomena","last_name":"Culvey","email":"pculveyk@nymag.com","gender":"Female","ip_address":"135.236.113.132"},
-{"id":22,"first_name":"Nester","last_name":"Prendergrast","email":"nprendergrastl@nhs.uk","gender":"Male","ip_address":"253.37.184.78"},
-{"id":23,"first_name":"Agretha","last_name":"Charrier","email":"acharrierm@examiner.com","gender":"Female","ip_address":"113.104.175.88"},
-{"id":24,"first_name":"Benton","last_name":"Headech","email":"bheadechn@hibu.com","gender":"Male","ip_address":"150.90.182.171"},
-{"id":25,"first_name":"Vanna","last_name":"Downage","email":"vdownageo@sun.com","gender":"Female","ip_address":"215.110.136.238"},
-{"id":26,"first_name":"Benedict","last_name":"Saines","email":"bsainesp@abc.net.au","gender":"Male","ip_address":"252.98.143.197"},
-{"id":27,"first_name":"Ingar","last_name":"Wardley","email":"iwardleyq@ycombinator.com","gender":"Male","ip_address":"181.115.140.240"},
-{"id":28,"first_name":"Thaxter","last_name":"MacCaughey","email":"tmaccaugheyr@nationalgeographic.com","gender":"Male","ip_address":"167.21.205.206"},
-{"id":29,"first_name":"Bernadine","last_name":"Sisneros","email":"bsisneross@weebly.com","gender":"Female","ip_address":"56.36.106.156"},
-{"id":30,"first_name":"Bord","last_name":"Wagenen","email":"bwagenent@go.com","gender":"Male","ip_address":"57.112.149.236"}]
+let usuarios = [{"id":1,"first_name":"Kaine","last_name":"Daintith","bank":"FARMERS BANK","city":"Lupane","country":"Zimbabwe","salary":7856.99,"expenses":826.22},
+{"id":2,"first_name":"Bartholomew","last_name":"Robeiro","bank":"BANK OF AMERICA","city":"Le Lamentin","country":"Martinique","salary":6972.75,"expenses":3513.99},
+{"id":3,"first_name":"Fredrika","last_name":"Aiskrigg","bank":"BUSEY BANK","city":"Qingyun","country":"China","salary":1129.86,"expenses":4698.7},
+{"id":4,"first_name":"Sukey","last_name":"Mongain","bank":"Raiffeisenbank Salzburg Liefering-Maxglan-Siezenheim eGen","city":"Baoluan","country":"China","salary":8920.83,"expenses":4247.53},
+{"id":5,"first_name":"Christel","last_name":"People","bank":"FIRST NATIONAL BANK","city":"Tuapse","country":"Russia","salary":1543.84,"expenses":4008.69},
+{"id":6,"first_name":"Fraze","last_name":"Gristock","bank":"FIRST TENNESSEE BANK","city":"Trzebinia","country":"Poland","salary":7485.54,"expenses":2886.14},
+{"id":7,"first_name":"Ringo","last_name":"Boylund","bank":"Tunisian foreign bank","city":"Mramani","country":"Comoros","salary":8799.36,"expenses":1288.88},
+{"id":8,"first_name":"Stephi","last_name":"Byrd","bank":"Sparkasse Imst AG","city":"Alicante/Alacant","country":"Spain","salary":7250.34,"expenses":2096.42},
+{"id":9,"first_name":"Hewet","last_name":"Halfhead","bank":"BANCA NAZIONALE DEL LAVORO S.P.A. (IN FORMA CONTRATTA BNL S.P.A.)","city":"New Plymouth","country":"New Zealand","salary":7336.75,"expenses":2123.25},
+{"id":10,"first_name":"Latisha","last_name":"Echelle","bank":"First Choice Credit Union Limited","city":"Englewood","country":"United States","salary":6149.49,"expenses":2599.2},
+{"id":11,"first_name":"Lancelot","last_name":"Duignan","bank":"Raiffeisenkasse Schlitters, Bruck und Strass registrierte Genossenschaft mit beschränkter Haftung","city":"Flen","country":"Sweden","salary":1541.55,"expenses":579.93},
+{"id":12,"first_name":"Goldia","last_name":"Strafford","bank":"FIRST STATE BANK","city":"Pyatovskiy","country":"Russia","salary":5386.03,"expenses":918.92},
+{"id":13,"first_name":"Charla","last_name":"Binnell","bank":"FIRST NATIONAL BANK","city":"Waterloo","country":"Sierra Leone","salary":1681.57,"expenses":4051.47},
+{"id":14,"first_name":"Allis","last_name":"Colledge","bank":"CITIZENS BANK","city":"Makhalino","country":"Russia","salary":9329.24,"expenses":4011.57},
+{"id":15,"first_name":"Charmian","last_name":"Cater","bank":"VOLKSBANK SELIGENSTADT EG","city":"Kímolos","country":"Greece","salary":6225.84,"expenses":2657.16},
+{"id":16,"first_name":"Heida","last_name":"Fishbie","bank":"VR Bank Lausitz eG","city":"Aramayuan","country":"Philippines","salary":2476.23,"expenses":2687.87},
+{"id":17,"first_name":"Callie","last_name":"Fencott","bank":"INTESA SANPAOLO S.P.A.","city":"Chiguang","country":"China","salary":3620.0,"expenses":1741.54},
+{"id":18,"first_name":"Charmane","last_name":"Trask","bank":"Société générale SFH","city":"Daxi","country":"China","salary":9590.82,"expenses":3079.34},
+{"id":19,"first_name":"Althea","last_name":"Hassard","bank":"Bank of Valletta plc","city":"Kamo","country":"Japan","salary":3601.21,"expenses":4068.41},
+{"id":20,"first_name":"Laughton","last_name":"Quantick","bank":"TD BANK","city":"Berezne","country":"Ukraine","salary":7557.12,"expenses":4988.76},
+{"id":21,"first_name":"Alvan","last_name":"Hammand","bank":"FIRSTBANK","city":"Daguo","country":"China","salary":4303.17,"expenses":1420.07},
+{"id":22,"first_name":"Shellie","last_name":"Walrond","bank":"BOA France","city":"Embu","country":"Kenya","salary":1704.91,"expenses":828.25},
+{"id":23,"first_name":"Gunter","last_name":"Dealtry","bank":"BANCA NAZIONALE DEL LAVORO S.P.A. (IN FORMA CONTRATTA BNL S.P.A.)","city":"San Nicolas","country":"Philippines","salary":2303.97,"expenses":2734.13},
+{"id":24,"first_name":"Ladonna","last_name":"Melbert","bank":"FIRST NATIONAL BANK OF OMAHA","city":"Pekalongan","country":"Indonesia","salary":9473.67,"expenses":4693.73},
+{"id":25,"first_name":"Judas","last_name":"Wasselin","bank":"FIRST BANK","city":"Binlod","country":"Philippines","salary":9713.34,"expenses":1156.16},
+{"id":26,"first_name":"Randi","last_name":"Simonsen","bank":"Sparkasse Borken-Schwalmstadt","city":"Novyy Oskol","country":"Russia","salary":8767.18,"expenses":2465.71},
+{"id":27,"first_name":"Tisha","last_name":"Beedie","bank":"BMO HARRIS BANK","city":"Wonorejo","country":"Indonesia","salary":2494.43,"expenses":1887.77},
+{"id":28,"first_name":"Web","last_name":"Calvey","bank":"WELLS FARGO BANK","city":"Białołeka","country":"Poland","salary":5724.95,"expenses":3418.3},
+{"id":29,"first_name":"Celestina","last_name":"Surmeyers","bank":"PROSPERITY BANK","city":"Shiban","country":"China","salary":6448.71,"expenses":4635.7},
+{"id":30,"first_name":"Falito","last_name":"Thirst","bank":"WESBANCO BANK INC","city":"Shigou","country":"China","salary":1862.12,"expenses":1242.67},
+{"id":31,"first_name":"Aurlie","last_name":"Von Salzberg","bank":"GRENKE BANK AG","city":"Helixi","country":"China","salary":7131.98,"expenses":1374.31},
+{"id":32,"first_name":"Jilly","last_name":"Smittoune","bank":"DNB Bank Polska S.A.","city":"Mari","country":"Indonesia","salary":4780.5,"expenses":4161.94},
+{"id":33,"first_name":"Mortie","last_name":"Sappell","bank":"BANCA DEL PIEMONTE S.P.A.","city":"Duli","country":"China","salary":1328.02,"expenses":754.68},
+{"id":34,"first_name":"Janeen","last_name":"Stoneley","bank":"Volksbank Delitzsch eG","city":"Hengbanqiao","country":"China","salary":6911.56,"expenses":2894.12},
+{"id":35,"first_name":"Gilberte","last_name":"Learmonth","bank":"Volksbank Alb eG","city":"Yangping","country":"China","salary":8750.89,"expenses":4163.5},
+{"id":36,"first_name":"Kaylil","last_name":"Gurry","bank":"DEUTSCHE BANK S.P.A.","city":"Hualong","country":"China","salary":1171.51,"expenses":4945.55},
+{"id":37,"first_name":"Perrine","last_name":"Matterface","bank":"PROSPERITY BANK","city":"Seget","country":"Indonesia","salary":6387.61,"expenses":1421.18},
+{"id":38,"first_name":"Anselm","last_name":"La Rosa","bank":"FIRST NATIONAL BANK OF OMAHA","city":"Oujiangcha","country":"China","salary":2209.94,"expenses":4888.15},
+{"id":39,"first_name":"Zaria","last_name":"Balston","bank":"FIRST NATIONAL BANK","city":"Eláteia","country":"Greece","salary":3798.83,"expenses":892.74},
+{"id":40,"first_name":"Neila","last_name":"Wardingly","bank":"BANCO BPM SOCIETA' PER AZIONI","city":"Mangulile","country":"Honduras","salary":2450.41,"expenses":1813.34},
+{"id":41,"first_name":"Barr","last_name":"Oates","bank":"FIRST STATE BANK","city":"Granada","country":"Peru","salary":2570.8,"expenses":2914.44},
+{"id":42,"first_name":"Onfroi","last_name":"Artin","bank":"Banque J. Safra Sarasin (Monaco) SA","city":"Sceaux","country":"France","salary":7488.38,"expenses":4496.99},
+{"id":43,"first_name":"Anne","last_name":"Fleckney","bank":"CITIZENS BANK","city":"Pisaras","country":"Micronesia","salary":2623.64,"expenses":3537.74},
+{"id":44,"first_name":"Marika","last_name":"Fritchley","bank":"BNP Paribas","city":"Izingolweni","country":"South Africa","salary":5013.77,"expenses":1181.14},
+{"id":45,"first_name":"Zita","last_name":"Biswell","bank":"Caja Rural San José de Almassora, S. Coop. de Crédito V.","city":"Borgo Maggiore","country":"San Marino","salary":7101.0,"expenses":3478.63},
+{"id":46,"first_name":"Romonda","last_name":"Boog","bank":"Caisse régionale de crédit agricole mutuel du Nord Est","city":"Raków","country":"Poland","salary":8576.05,"expenses":1619.12},
+{"id":47,"first_name":"Wini","last_name":"Caldera","bank":"Wiener Neustädter Sparkasse","city":"Luobei","country":"China","salary":8602.78,"expenses":3682.38},
+{"id":48,"first_name":"Leland","last_name":"Cardus","bank":"FIRST NATIONAL BANK","city":"Karema","country":"Tanzania","salary":1339.03,"expenses":4853.66},
+{"id":49,"first_name":"Brynn","last_name":"Haresign","bank":"BANCO BPM SOCIETA' PER AZIONI","city":"Santana do Paraíso","country":"Brazil","salary":2735.7,"expenses":3492.8},
+{"id":50,"first_name":"Jacinda","last_name":"Fenne","bank":"DNB Luxembourg S.A.","city":"Bestöbe","country":"Kazakhstan","salary":6883.13,"expenses":4828.44}]
 
-function buscar_usuario_id() {
-    let id = Number(prompt('Ingrese el ID a buscar: '))
-    let usuario
-    
-    for (let u of usuarios) {
-        if (u.id === id) {
-            usuario = u
-        }  
-    }
-    
-    if (!usuario) {
-        console.log('Usuario no encontrado.')
-    } else {
-        console.log('DATOS DEL USUARIO:')
-        for (let dato in usuario) {
-            console.log(dato + ': ' + usuario[dato])
+function filtro_usuario(lista_usuarios) {
+    let objetivo = Number(prompt('Ingrese el "ID" del usuario a buscar: '))
+
+    for (let u of lista_usuarios) {
+        if (u.id === objetivo) {
+            return u
         }
+    }
+    console.log('ID de usuario ingresada no existente.')
+}
+
+function ahorro_mensual(usuario) {
+    return usuario.salary - usuario.expenses
+}
+
+function mostrar_balance_mensual(usuario) {
+    console.log(
+        `Nombre: ${usuario.first_name} ${usuario.last_name}\n` +
+        `Banco: ${usuario.bank}\n` +
+        `Ahorro: ${ahorro_mensual(usuario)}`
+    )
+}
+
+function obtener_calificacion(ahorro) {
+    if (ahorro < 500) return 'Ahorro bajo'
+    if (ahorro <= 1500) return 'Ahorro medio'
+    return 'Ahorro alto'
+}
+
+function calificacion_financiera(lista_usuarios) {
+    for (let u of lista_usuarios) {
+        let ahorro = ahorro_mensual(u)
+        let calificacion = obtener_calificacion(ahorro)
+
+        console.log(
+            `\nNombre: ${u.first_name} ${u.last_name}\n` +
+            `Ahorro: ${ahorro}\n` +
+            `"${calificacion}"`
+        )
     }
 }
 
-function contador_datos_generos() {
-    let conteo = usuarios.reduce((acumulador, usuario) => {
-        let genero = usuario.gender;
+function cant_ahorro_por(lista_usuarios, agrupar_por) {
+    return lista_usuarios.reduce((acc, u) => {
+        let grupo = u[agrupar_por]
+        let ahorro = ahorro_mensual(u)
 
-        if (acumulador[genero]) {
-            acumulador[genero]++;
-        } else {
-            acumulador[genero] = 1;
+        if (!acc[grupo]) {
+            acc[grupo] = { total: 0, cantidadUsuarios: 0 }
         }
-        return acumulador;
-    }, {});
 
-    console.log('\n\nCONTEO POR GENEROS: ')
-    for (let dato in conteo) {
-        console.log(dato + ': ' + conteo[dato])
+        acc[grupo].total += ahorro
+        acc[grupo].cantidadUsuarios++
+
+        return acc
+    }, {})
+}
+
+function mostrar_resultado(resultado, etiqueta) {
+    for (let [clave, datos] of Object.entries(resultado)) {
+        console.log(
+            `\n${etiqueta}: ${clave}\n` +
+            `total: ${datos.total}\n` +
+            `clientes: ${datos.cantidadUsuarios}`
+        )
     }
 }
 
 function main() {
-    buscar_usuario_id()
-    contador_datos_generos()
+    let usuario = filtro_usuario(usuarios)
+
+    if (usuario) {
+        console.log('1) Función de balance mensual')
+        mostrar_balance_mensual(usuario)
+    }
+
+    console.log('\n2) Clasificación financiera')
+    calificacion_financiera(usuarios)
+
+    console.log('\n3) Cantidad de ahorro por banco')
+    let ahorros_por_banco = cant_ahorro_por(usuarios, 'bank')
+    mostrar_resultado(ahorros_por_banco, 'Banco')
+
+    console.log('\n4) Cantidad de ahorro por país')
+    let ahorros_por_pais = cant_ahorro_por(usuarios, 'country')
+    mostrar_resultado(ahorros_por_pais, 'Pais')
 }
 
 main()
