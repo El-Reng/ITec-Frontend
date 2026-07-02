@@ -1,27 +1,16 @@
-function Header() {
+function Header({ onOpenFavorites }) {
   return (
-    <header className="w-full bg-gray-800 pl-6 pr-6 shadow-lg">
+    <header className="w-full bg-neutral-800 p-6 shadow-lg">
       <nav className="flex justify-between items-center">
-        <h1 className="text-white text-2xl font-bold">StoreDevs</h1>
+        <h1 className="text-white text-5xl font-bold">Tasks</h1>
 
-        <div className="flex gap-6 pt-12">
-          <a
-            href="#"
-            className="text-gray-500 hover:text-white hover:scale-120"
+        <div className="flex gap-6 items-center">
+          <button
+            onClick={onOpenFavorites}
+            className="text-yellow-400 hover:text-yellow-300 transition text-xl flex items-center gap-2"
           >
-            Sign In
-          </a>
-
-          <a
-            href="#"
-            className="text-gray-500 hover:text-white hover:scale-120"
-          >
-            Register
-          </a>
-
-          <a href="#" className="text-gray-500 hover:scale-120">
-            🛒
-          </a>
+            ⭐ Favoritos
+          </button>
         </div>
       </nav>
     </header>
