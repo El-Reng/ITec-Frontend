@@ -1,109 +1,102 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link,
+  useNavigate,
+} from "react-router-dom";
+import { useState } from "react";
 
-import Header from "./components/Header";
-import TaskPanel from "./components/TaskPanel";
-import Page from "./pages/Page";
+import Inicio from "./Inicio";
+import Juegos from "./Juegos";
+import Juego from "./Juego";
+import Favoritos from "./Favoritos";
+import DetallesJuego from "./DetallesJuego";
 
-const API_URL = "http://localhost:8000/tareas";
+function Buscador() {
+  const navigate = useNavigate();
+  const [busqueda, setBusqueda] = useState("");
 
-function App() {
-  const [taskEditando, setTaskEditando] = useState(null);
-  const [favoritos, setFavoritos] = useState([]);
-  const [mostrarFav, setMostrarFav] = useState(false);
-  const [reload, setReload] = useState(false);
+  function buscar(evento) {
+    evento.preventDefault();
 
-  function refrescar() {
-    setReload((prev) => !prev);
-  }
+    const texto = busqueda.trim();
 
-  // CREATE
-  async function crearTarea(task) {
-    const response = await axios.get(`${API_URL}/`);
-    const tasks = response.data;
-
-    const existe = tasks.some((t) => t.id === Number(task.id));
-
-    if (existe) {
-      alert("La ID ingresada ya existe");
+    if (texto === "") {
+      navigate("/juegos");
       return;
     }
 
-    await axios.post(`${API_URL}/`, {
-      ...task,
-      id: Number(task.id),
-    });
-
-    refrescar();
+    navigate(`/juegos?search=${encodeURIComponent(texto)}&page=1`);
   }
-
-  // UPDATE
-  async function editarTarea(id, tarea) {
-    await axios.put(`${API_URL}/${id}`, tarea);
-    setTaskEditando(null);
-    refrescar();
-  }
-
-  // DELETE
-  async function eliminarTarea(id) {
-    await axios.delete(`${API_URL}/${id}`);
-    refrescar();
-  }
-
-  // FAVORITOS
-  function abrirFavoritos() {
-    const data = JSON.parse(localStorage.getItem("favoritos")) || [];
-    setFavoritos(data);
-    setMostrarFav(true);
-  }
-
-  function cerrarFavoritos() {
-    setMostrarFav(false);
-  }
-
-  useEffect(() => {}, []);
 
   return (
-    <>
-      <Header onOpenFavorites={abrirFavoritos} />
+    <form onSubmit={buscar} className="hidden md:block">
+      <input
+        type="text"
+        value={busqueda}
+        onChange={(evento) => setBusqueda(evento.target.value)}
+        placeholder="Buscar juegos..."
+        className="w-56 rounded-lg border border-slate-700 bg-slate-900 px-4 py-2 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-blue-500"
+      />
+    </form>
+  );
+}
 
-      <main className="flex bg-neutral-900 min-h-screen">
-        <TaskPanel
-          onSave={crearTarea}
-          tareaEditando={taskEditando}
-          onUpdate={editarTarea}
-        />
+function App() {
+  return (
+    <BrowserRouter>
+      <div className="min-h-screen bg-slate-950 text-white">
+        <nav className="border-b border-slate-800 bg-slate-950/95 px-6 py-4 shadow-lg">
+          <div className="mx-auto flex max-w-6xl items-center justify-between gap-6">
+            <Link
+              to="/"
+              className="shrink-0 text-2xl font-black tracking-tight text-white transition hover:text-blue-400"
+            >
+              🎮 GameVault
+            </Link>
 
-        {/* PAGE = SOLO GET + RENDER */}
-        <Page
-          reload={reload}
-          onDelete={eliminarTarea}
-          onEdit={setTaskEditando}
-        />
+            <Buscador />
 
-        {/* FAVORITOS */}
-        {mostrarFav && (
-          <div className="fixed top-0 right-0 w-96 h-full bg-neutral-900 border-l border-neutral-700 p-6">
-            <h2 className="text-white text-2xl mb-4">⭐ Favoritos</h2>
+            <div className="flex shrink-0 items-center gap-2">
+              <Link
+                to="/"
+                className="rounded-lg px-4 py-2 font-semibold text-slate-300 transition hover:bg-slate-800 hover:text-white"
+              >
+                Inicio
+              </Link>
 
-            {favoritos.length === 0 ? (
-              <p className="text-neutral-400">No hay favoritos</p>
-            ) : (
-              favoritos.map((t) => (
-                <div key={t.id} className="mb-3 p-3 bg-neutral-800 rounded">
-                  <p className="text-white">{t.titulo}</p>
-                  <p className="text-neutral-400 text-sm">ID: {t.id}</p>
-                </div>
-              ))
-            )}
+              <Link
+                to="/juegos"
+                className="rounded-lg px-4 py-2 font-semibold text-slate-300 transition hover:bg-slate-800 hover:text-white"
+              >
+                Juegos
+              </Link>
 
-            <button onClick={cerrarFavoritos} className="mt-4 text-red-400">
-              Cerrar
-            </button>
+              <Link
+                to="/favoritos"
+                className="rounded-lg px-4 py-2 font-semibold text-slate-300 transition hover:bg-slate-800 hover:text-white"
+              >
+                Favoritos
+              </Link>
+            </div>
           </div>
-        )}
-      </main>
-    </>
+        </nav>
+
+        <main>
+          <Routes>
+            <Route path="/" element={<Inicio />} />
+            <Route path="/juegos" element={<Juegos />} />
+
+            <Route path="/juegos/:id" element={<Juego />}>
+              <Route path="detalles" element={<DetallesJuego />} />
+            </Route>
+
+            <Route path="/favoritos" element={<Favoritos />} />
+          </Routes>
+        </main>
+      </div>
+    </BrowserRouter>
   );
 }
 

@@ -1,47 +1,44 @@
-# Task Manager
+# TP03 - React MPA
 
-## Descripción
+Aplicación web desarrollada con React para el Trabajo Práctico Evaluativo 3.
 
-Task Manager es una aplicación desarrollada con React que consume una API creada con FastAPI para gestionar tareas.
-
-La aplicación permite visualizar todas las tareas registradas, crear nuevas, editar tareas existentes, eliminarlas y consultar el detalle de una tarea mediante un GET por ID. Además, incorpora un sistema de favoritos utilizando LocalStorage para guardar las tareas seleccionadas por el usuario.
+La aplicación permite consultar videojuegos utilizando la API pública de RAWG, ver información individual de cada juego y guardar juegos como favoritos.
 
 ## Tecnologías utilizadas
 
-* React
-* Vite
-* Axios
-* Tailwind CSS
-* FastAPI (Backend)
+- React
+- Vite
+- React Router DOM
+- Tailwind CSS
+- Context API
+- Fetch API
+- RAWG API
 
 ## Funcionalidades
 
-* Listado de todas las tareas (GET)
-* Consulta de una tarea por ID (GET)
-* Creación de tareas (POST)
-* Edición de tareas (PUT)
-* Eliminación de tareas (DELETE)
-* Sistema de favoritos mediante LocalStorage
-* Interfaz desarrollada con componentes reutilizables
+- Listado de videojuegos.
+- Vista individual de cada juego.
+- Rutas dinámicas.
+- Ruta anidada para los detalles.
+- Sistema de favoritos mediante Context API.
+- Manejo de estados de carga y errores.
+- Diseño realizado con Tailwind CSS.
 
-## Instalación y ejecución
+## API
 
-1. Clonar el repositorio.
+Se utiliza la API pública de RAWG:
 
-2. Instalar las dependencias:
+https://rawg.io/apidocs
+
+## Instalación
+
+Clonar el repositorio y ejecutar:
 
 ```bash
 npm install
-```
-
-3. Iniciar el servidor de desarrollo:
-
-```bash
 npm run dev
 ```
 
-4. Ejecutar el proyecto Backend desarrollado con FastAPI para que la aplicación pueda consumir la API.
-
 ## Autor
 
-**Rojo Leonel**
+Leonel Rojo
